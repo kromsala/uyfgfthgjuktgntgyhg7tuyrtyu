@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Интерактивная визитка: Углерод (C)</title>
+
+    <!-- Подключаем красивый шрифт -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+    
+
+    <style>
+
+        /* --- СТИЛИ (CSS) --- */
+
+        :root {
+
+            --bg-color: #0b0813;
+
+            --card-bg: #161224;
+
+            --accent-purple: #a155ff;
+
+            --accent-cyan: #00ffcc;
+
+            --text-color: #f1ecff;
+
+        }
+
+
+
+        * {
+
+            box-sizing: border-box;
+
+            margin: 0;
+
+            padding: 0;
+
+        }
+
+
+
+        body {
+
+            font-family: 'Montserrat', sans-serif;
+
+            background-color: var(--bg-color);
+
+            color: var(--text-color);
+
+            line-height: 1.6;
+
+            overflow-x: hidden;
+
+        }
+
+
+
+        .container {
+
+            max-width: 1100px;
+
+            margin: 0 auto;
+
+            padding: 0 20px;
+
+        }
+
+
+
+        /* --- 1. Шапка / Hero Section --- */
+
+        header {
+
+            min-height: 80vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            position: relative;
+
+            padding-top: 50px;
+
+        }
+
+
+
+        .hero-text {
+
+            max-width: 600px;
+
+        }
+
+
+
+        .hero-text h1 {
+
+            font-size: 4.5rem;
+
+            font-weight: 900;
+
+            text-transform: uppercase;
+
+            letter-spacing: 2px;
+
+            background: linear-gradient(45deg, var(--accent-purple), var(--accent-cyan));
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+            margin-bottom: 10px;
+
+        }
+
+
+
+        .hero-text h2 {
+
+            font-size: 1.8rem;
+
+            color: var(--accent-cyan);
+
+            margin-bottom: 20px;
+
+        }
+
+
+
+        .hero-text p {
+
+            font-size: 1.1rem;
+
+            opacity: 0.8;
+
+            margin-bottom: 30px;
+
+        }
+
+
+
+        /* Анимация атома */
+
+        .atom-container {
+
+            position: relative;
+
+            width: 300px;
+
+            height: 300px;
+
+        }
+
+
+
+        .nucleus {
+
+            position: absolute;
+
+            top: 50%;
+
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+            width: 50px;
+
+            height: 50px;
+
+            background: radial-gradient(circle, #fff, var(--accent-purple));
+
+            border-radius: 50%;
+
+            box-shadow: 0 0 30px var(--accent-purple);
+
+        }
+
+
+
+        .orbit {
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            border: 2px solid rgba(0, 255, 204, 0.2);
+
+            border-radius: 50%;
+
+            animation: spin 8s linear infinite;
+
+        }
+
+
+
+        .orbit::before {
+
+            content: '';
+
+            position: absolute;
+
+            top: -6px;
+
+            left: 50%;
+
+            width: 12px;
+
+            height: 12px;
+
+            background: var(--accent-cyan);
+
+            border-radius: 50%;
+
+            box-shadow: 0 0 15px var(--accent-cyan);
+
+        }
+
+
+
+        .orbit-2 {
+
+            transform: rotate(60deg);
+
+            animation: spin-reverse 12s linear infinite;
+
+        }
+
+
+
+        @keyframes spin {
+
+            100% { transform: rotate(360deg); }
+
+        }
+
+        @keyframes spin-reverse {
+
+            100% { transform: rotate(-360deg); }
+
+        }
+
+
+
+        /* --- 2. Свойства (Грид) --- */
+
+        .properties-section {
+
+            padding: 80px 0;
+
+        }
+
+
+
+        .section-title {
+
+            text-align: center;
+
+            font-size: 2.5rem;
+
+            margin-bottom: 50px;
+
+            position: relative;
+
+        }
+
+
+
+        .section-title::after {
+
+            content: '';
+
+            display: block;
+
+            width: 80px;
+
+            height: 4px;
+
+            background: var(--accent-cyan);
+
+            margin: 15px auto 0;
+
+            border-radius: 2px;
+
+        }
+
+
+
+        .props-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+            gap: 25px;
+
+        }
+
+
+
+        .prop-card {
+
+            background-color: var(--card-bg);
+
+            padding: 30px;
+
+            border-radius: 15px;
+
+            text-align: center;
+
+            border: 1px solid rgba(161, 85, 255, 0.1);
+
+            transition: all 0.3s ease;
+
+        }
+
+
+
+        .prop-card:hover {
+
+            transform: translateY(-5px);
+
+            border-color: var(--accent-cyan);
+
+            box-shadow: 0 10px 20px rgba(0, 255, 204, 0.1);
+
+        }
+
+
+
+        .prop-card h3 {
+
+            color: var(--accent-cyan);
+
+            font-size: 1.2rem;
+
+            margin-bottom: 15px;
+
+        }
+
+
+
+        .prop-card p {
+
+            font-size: 1.8rem;
+
+            font-weight: bold;
+
+        }
+
+
+
+        /* --- 3. Калькулятор Углерода (JS Интерактив) --- */
+
+        .calc-section {
+
+            background-color: var(--card-bg);
+
+            padding: 60px 0;
+
+            border-radius: 20px;
+
+            margin: 40px 0;
+
+            border: 1px solid rgba(161, 85, 255, 0.1);
+
+        }
+
+
+
+        .calc-wrapper {
+
+            text-align: center;
+
+            max-width: 600px;
+
+            margin: 0 auto;
+
+        }
+
+
+
+        .calc-wrapper p {
+
+            margin-bottom: 25px;
+
+            font-size: 1.1rem;
+
+        }
+
+
+
+        input[type="number"] {
+
+            background: rgba(255, 255, 255, 0.05);
+
+            border: 2px solid var(--accent-purple);
+
+            padding: 12px 20px;
+
+            border-radius: 30px;
+
+            color: #fff;
+
+            font-size: 1.2rem;
+
+            text-align: center;
+
+            width: 150px;
+
+            outline: none;
+
+            transition: 0.3s;
+
+        }
+
+
+
+        input[type="number"]:focus {
+
+            border-color: var(--accent-cyan);
+
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
+
+        }
+
+
+
+        .calc-result {
+
+            margin-top: 30px;
+
+            font-size: 1.5rem;
+
+            font-weight: bold;
+
+        }
+
+
+
+        .calc-result span {
+
+            color: var(--accent-cyan);
+
+            font-size: 2rem;
+
+        }
+
+
+
+        /* --- 4. Интерактивная игра --- */
+
+        .game-section {
+
+            padding: 80px 0;
+
+        }
+
+
+
+        .game-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(
+
+auto-fit, minmax(200px, 1fr));
+
+            gap: 20px;
+
+            margin-top: 30px;
+
+        }
+
+
+
+        .game-item {
+
+            background: var(--card-bg);
+
+            padding: 25px;
+
+            border-radius: 12px;
+
+            text-align: center;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            border: 1px solid rgba(255, 255, 255, 0.05);
+
+        }
+
+
+
+        .game-item:hover {
+
+            background: rgba(161, 85, 255, 0.1);
+
+        }
+
+
+
+        .game-item.correct {
+
+            border-color: #00ff66;
+
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
+
+            background: rgba(0, 255, 102, 0.05);
+
+        }
+
+
+
+        .game-item.incorrect {
+
+            border-color: #ff3366;
+
+            box-shadow: 0 0 15px rgba(255, 51, 102, 0.2);
+
+            background: rgba(255, 51, 102, 0.05);
+
+        }
+
+
+
+        #game-feedback {
+
+            text-align: center;
+
+            margin-top: 30px;
+
+            font-size: 1.2rem;
+
+            min-height: 40px;
+
+            color: var(--accent-cyan);
+
+        }
+
+
+
+        /* --- 5. Футер --- */
+
+        footer {
+
+            text-align: center;
+
+            padding: 40px 0;
+
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+
+            font-size: 0.9rem;
+
+            opacity: 0.6;
+
+        }
+
+
+
+        /* Адаптивность для телефонов */
+
+        @media (max-width: 768px) {
+
+            header {
+
+                flex-direction: column-reverse;
+
+                text-align: center;
+
+                justify-content: center;
+
+                padding-bottom: 50px;
+
+            }
+
+            .hero-text h1 { font-size: 3rem; }
+
+            .atom-container { margin-bottom: 40px; }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+
+    <div class="container">
+
+        <!-- 1. Главный экран -->
+
+        <header>
+
+            <div class="hero-text">
+
+                <h1>Углерод (C)</h1>
+
+                <h2>Великий конструктор Вселенной</h2>
+
+                <p>Я могу быть нежным графитом в твоем карандаше или вечным сверкающим алмазом. Без меня на Земле не существовало бы ни одной живой клетки. Я — основа органической жизни.</p>
+
+            </div>
+
+            <!-- Анимация атома -->
+
+            <div class="atom-container">
+
+                <div class="nucleus"></div>
+
+                <div class="orbit"></div>
+
+                <div class="orbit orbit-2"></div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- 2. Свойства элемента -->
+
+        <section class="properties-section">
+
+            <h2 class="section-title">Химический паспорт</h2>
+
+            <div class="props-grid">
+
+                <div class="prop-card">
+
+                    <h3>Порядковый номер</h3>
+
+                    <p>6</p>
+
+                </div>
+
+                <div class="prop-card">
+
+                    <h3>Атомная масса</h3>
+
+                    <p>12.011</p>
+
+                </div>
+
+                <div class="prop-card">
+
+                    <h3>Валентность</h3>
+
+                    <p>IV</p>
+
+                </div>
+
+                <div class="prop-card">
+
+                    <h3>Электроны</h3>
+
+                    <p>1s² 2s² 2p²</p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- 3. Интерактивный калькулятор -->
+
+        <section class="calc-section">
+
+            <div class="calc-wrapper">
+
+                <h2 class="section-title">Сколько в тебе углерода?</h2>
+
+                <p>Тело человека состоит из углерода примерно на 18%. Введи свой вес в килограммах, и мы мгновенно рассчитаем массу чистых атомов углерода внутри тебя!</p>
+
+                <input type="number" id="user-weight" placeholder="Вес (кг)" min="1">
+
+                <div class="calc-result">
+
+                    Твой углеродный вес: <span id="carbon-result">0</span> кг
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!--
+
+4. Интерактивная игра -->
+
+        <section class="game-section">
+
+            <h2 class="section-title">Где прячется Углерод?</h2>
+
+            <p style="text-align: center; margin-bottom: 20px;">Кликай на предметы, в составе которых, по твоему мнению, есть углерод!</p>
+
+            <div class="game-grid">
+
+                <div class="game-item" onclick="checkItem(this, true, 'Правильно! Древесина — это целлюлоза, сложное органическое соединение углерода.')">Деревянный стул</div>
+
+                <div class="game-item" onclick="checkItem(this, false, 'Увы! Дистиллированная вода — это чистый H₂O. Здесь нет углерода.')">Чистая вода</div>
+
+                <div class="game-item" onclick="checkItem(this, true, 'Верно! Сталь — это сплав железа с добавлением углерода для прочности.')">Стальной нож</div>
+
+                <div class="game-item" onclick="checkItem(this, false, 'Мимо! Поваренная соль — это неорганический кристалл хлорида натрия (NaCl).')">Пищевая соль</div>
+
+                <div class="game-item" onclick="checkItem(this, true, 'Да! Любой пластик — это полимер, состоящий из длинных цепочек углерода.')">Пластиковая бутылка</div>
+
+            </div>
+
+            <div id="game-feedback">Кликни на любой предмет выше...</div>
+
+        </section>
+
+
+
+        <!-- 5. Подвал -->
+
+        <footer>
+
+            <p>© Проект «Интерактивная визитка элемента». Разработано ученицей B&D Фетисовой Софьей.\
+        </footer>
+
+    </div>
+
+
+
+    <!-- --- СКРИПТЫ (JavaScript) --- -->
+
+    <script>
+
+        // Код для калькулятора веса
+
+        const weightInput = document.getElementById('user-weight');
+
+        const carbonResult = document.getElementById('carbon-result');
+
+
+
+        weightInput.addEventListener('input', () => {
+
+            const weight = parseFloat(weightInput.value);
+
+            if (weight > 0) {
+
+                // Вычисляем 18% от веса и округляем до 1 знака после запятой
+
+                const carbonWeight = (weight * 0.18).toFixed(1);
+
+                carbonResult.textContent = carbonWeight;
+
+            } else {
+
+                carbonResult.textContent = '0';
+
+            }
+
+        });
+
+
+
+        // Код для игры-угадайки
+
+        function checkItem(element, isCorrect, feedbackText) {
+
+            // Сбрасываем предыдущие классы
+
+            element.classList.remove('correct', 'incorrect');
+
+            
+
+            // Назначаем класс и текст в зависимости от правильности
+
+            if (isCorrect) {
+
+                element.classList.add('correct');
+
+            } else {
+
+                element.classList.add('incorrect');
+
+            }
+
+            
+
+            // Выводим пояснение на экран
+
+            document.getElementById('game-feedback').textContent = feedbackText;
+
+        }
+
+    </script>
+
+</body>
+
+</html>
